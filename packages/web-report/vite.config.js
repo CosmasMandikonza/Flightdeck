@@ -1,18 +1,12 @@
 import { defineConfig } from "vite";
-import { fileURLToPath } from "node:url";
-import { dirname, resolve } from "node:path";
+import path from "node:path";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const repoRoot = resolve(__dirname, "../.."); // baseline_flightdeck root
-const base = process.env.VITE_BASE ?? "/";
+const repo = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
+const base = repo ? `/${repo}/` : "/";
 
 export default defineConfig({
-  root: ".",
+  root: "./packages/web-report",
   base,
-  server: {
-    port: 5173,
-    open: true,
-    fs: { allow: [repoRoot] }
-  },
+  server: { port: 5174, strictPort: true },
   build: { outDir: "dist", emptyOutDir: true }
 });

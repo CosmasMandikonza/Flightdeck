@@ -1,0 +1,56 @@
+name: Publish Web Report (Pages)
+
+on:
+  push:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable corepack & setup pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@10.18.1 --activate
+      - name: Install deps
+        run: pnpm install --frozen-lockfile=false
+      - name: Build core & CLI
+        run: |
+          pnpm -C packages/core build
+          pnpm -C packages/cli build
+      - name: Generate features/aliases
+        run: pnpm fetch:features
+      - name: Produce baseline report for demo
+        run: |
+          node packages/cli/dist/index.js scan --src ./examples/sample-app --report ./examples/sample-app/.baseline --analytics ./examples/sample-app/traffic.csv || true
+          mkdir -p packages/web-report/public/demo
+          cp -f examples/sample-app/.baseline/report.json packages/web-report/public/demo/report.json || echo "{\"summary\":{\"violations\":[],\"warnings\":[],\"achieved\":0,\"coverageBudget\":0},\"features\":{}}" > packages/web-report/public/demo/report.json
+      - name: Build web app
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: pnpm -C packages/web-report build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: packages/web-report/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
