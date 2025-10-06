@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/<you>/baseline-flightdeck/main/schemas/flightdeckrc.schema.json",
+  "profile": "moderate",
+  "baselineYear": 2024,
+  "browserslist": ">0.5%, not dead",
+  "analyticsCsv": "./analytics/traffic.csv",
+  "coverageBudget": 95,
+  "treatNewlyAsViolation": false,
+  "ignore": ["clipboard-api"], 
+  "overrides": {
+    "popover-attribute": { "minCoverage": 90, "severity": "warn" }
+  }
+}
