@@ -1,0 +1,36 @@
+name: baseline-scan
+on:
+  pull_request:
+    branches: [ "**" ]
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9.7.0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: "pnpm" }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -C packages/core build && pnpm -C packages/cli build
+      - name: Run Flightdeck (strict)
+        run: |
+          cp .flightdeckrc.strict.json .flightdeckrc.json
+          node packages/cli/dist/index.js scan --src . --report ./.baseline
+        continue-on-error: true
+        id: scan
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: baseline-report
+          path: ./.baseline
+      - name: Comment summary
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            **Baseline Flightdeck**
+            - Violations: ${{ steps.scan.outcome == 'success' && '0' || 'see artifact' }}
+            - Report: artifact **baseline-report**
+      - name: Fail on violations
+        if: steps.scan.outcome != 'success'
+        run: exit 1

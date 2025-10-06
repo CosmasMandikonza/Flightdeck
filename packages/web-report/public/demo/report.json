@@ -1,0 +1,136 @@
+{
+  "features": {
+    "popover-attribute": {
+      "id": "popover-attribute",
+      "count": 2,
+      "hits": [
+        {
+          "file": "C:\\Users\\LENOVO\\baseline_flightdeck\\examples\\sample-app\\index.html",
+          "line": 5,
+          "column": 13,
+          "snippet": "<button popovertarget=\"p1\">Open tip</button>"
+        },
+        {
+          "file": "C:\\Users\\LENOVO\\baseline_flightdeck\\examples\\sample-app\\index.html",
+          "line": 6,
+          "column": 18,
+          "snippet": "<div id=\"p1\" popover>Hello</div>"
+        }
+      ],
+      "status": "newly",
+      "coverage": 90,
+      "browsers": {
+        "chrome": "114",
+        "edge": "114",
+        "safari": "17"
+      },
+      "mdn": "https://developer.mozilla.org/docs/Web/HTML/Global_attributes/popover",
+      "severity": "info"
+    },
+    "dialog-element": {
+      "id": "dialog-element",
+      "count": 2,
+      "hits": [
+        {
+          "file": "C:\\Users\\LENOVO\\baseline_flightdeck\\examples\\sample-app\\index.html",
+          "line": 8,
+          "column": 5,
+          "snippet": "<dialog id=\"dlg\"><p>Hi!</p></dialog>"
+        },
+        {
+          "file": "C:\\Users\\LENOVO\\baseline_flightdeck\\examples\\sample-app\\styles.css",
+          "line": 2,
+          "column": 1,
+          "snippet": "dialog::backdrop"
+        }
+      ],
+      "status": "widely",
+      "coverage": 100,
+      "browsers": {
+        "chrome": "37",
+        "edge": "79",
+        "firefox": "98",
+        "safari": "15.4"
+      },
+      "mdn": "https://developer.mozilla.org/docs/Web/HTML/Element/dialog",
+      "severity": "info"
+    },
+    "view-transitions": {
+      "id": "view-transitions",
+      "count": 2,
+      "hits": [
+        {
+          "file": "C:\\Users\\LENOVO\\baseline_flightdeck\\examples\\sample-app\\main.js",
+          "line": 1,
+          "column": 4,
+          "snippet": "if (document.startViewTransition) {"
+        },
+        {
+          "file": "C:\\Users\\LENOVO\\baseline_flightdeck\\examples\\sample-app\\main.js",
+          "line": 2,
+          "column": 2,
+          "snippet": "document.startViewTransition(() => {"
+        }
+      ],
+      "status": "newly",
+      "coverage": 90,
+      "browsers": {
+        "chrome": "111",
+        "edge": "111",
+        "safari": "17"
+      },
+      "mdn": "https://developer.mozilla.org/docs/Web/API/View_Transitions_API",
+      "severity": "info"
+    },
+    "clipboard-api": {
+      "id": "clipboard-api",
+      "count": 1,
+      "hits": [
+        {
+          "file": "C:\\Users\\LENOVO\\baseline_flightdeck\\examples\\sample-app\\main.js",
+          "line": 7,
+          "column": 0,
+          "snippet": "navigator.clipboard?.readText?.().then(t => console.log(t)).catch(() => {});"
+        }
+      ],
+      "status": "widely",
+      "coverage": 100,
+      "browsers": {
+        "chrome": "66",
+        "edge": "79",
+        "firefox": "63",
+        "safari": "13"
+      },
+      "mdn": "https://developer.mozilla.org/docs/Web/API/Clipboard_API",
+      "severity": "info"
+    },
+    "selector-has": {
+      "id": "selector-has",
+      "count": 1,
+      "hits": [
+        {
+          "file": "C:\\Users\\LENOVO\\baseline_flightdeck\\examples\\sample-app\\styles.css",
+          "line": 1,
+          "column": 1,
+          "snippet": ".card:has(button)"
+        }
+      ],
+      "status": "newly",
+      "coverage": 90,
+      "browsers": {
+        "chrome": "105",
+        "edge": "105",
+        "safari": "15.4"
+      },
+      "mdn": "https://developer.mozilla.org/docs/Web/CSS/:has",
+      "severity": "info"
+    }
+  },
+  "summary": {
+    "violations": [],
+    "warnings": [],
+    "pass": true,
+    "coverageBudget": 20,
+    "achieved": 94
+  }
+}
