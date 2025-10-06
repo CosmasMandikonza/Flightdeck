@@ -1,0 +1,59 @@
+{
+  "dialog-element": {
+    "id": "dialog-element",
+    "title": "<dialog> element",
+    "status": "widely",
+    "browsers": {
+      "chrome": "37",
+      "edge": "79",
+      "firefox": "98",
+      "safari": "15.4"
+    },
+    "mdn": "https://developer.mozilla.org/docs/Web/HTML/Element/dialog"
+  },
+  "popover-attribute": {
+    "id": "popover-attribute",
+    "title": "Popover",
+    "status": "newly",
+    "browsers": {
+      "chrome": "114",
+      "edge": "114",
+      "safari": "17"
+    },
+    "mdn": "https://developer.mozilla.org/docs/Web/HTML/Global_attributes/popover"
+  },
+  "view-transitions": {
+    "id": "view-transitions",
+    "title": "View Transitions API",
+    "status": "newly",
+    "browsers": {
+      "chrome": "111",
+      "edge": "111",
+      "safari": "17"
+    },
+    "mdn": "https://developer.mozilla.org/docs/Web/API/View_Transitions_API"
+  },
+  "clipboard-api": {
+    "id": "clipboard-api",
+    "title": "Clipboard API",
+    "status": "widely",
+    "browsers": {
+      "chrome": "66",
+      "edge": "79",
+      "firefox": "63",
+      "safari": "13"
+    },
+    "mdn": "https://developer.mozilla.org/docs/Web/API/Clipboard_API"
+  },
+  "selector-has": {
+    "id": "selector-has",
+    "title": ":has() selector",
+    "status": "newly",
+    "browsers": {
+      "chrome": "105",
+      "edge": "105",
+      "safari": "15.4"
+    },
+    "mdn": "https://developer.mozilla.org/docs/Web/CSS/:has"
+  }
+}

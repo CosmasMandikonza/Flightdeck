@@ -1,0 +1,23 @@
+services:
+  flightdeck-scan:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ..:/app
+    command: sh -c "
+      corepack enable &&
+      corepack prepare pnpm@9.7.0 --activate &&
+      pnpm install --frozen-lockfile &&
+      pnpm fetch:features &&
+      pnpm -C packages/core build &&
+      pnpm -C packages/cli build &&
+      pnpm -C packages/cli start scan --src ./examples/sample-app --report ./examples/sample-app/.baseline --analytics ./examples/sample-app/traffic.csv
+    "
+
+  report-web:
+    image: nginx:alpine
+    depends_on: [flightdeck-scan]
+    volumes:
+      - ../examples/sample-app/.baseline:/usr/share/nginx/html:ro
+    ports:
+      - "8080:80"

@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.1.0",
   "packageManager": "pnpm@9.7.0",
-  "scripts": {
+  "scripts": { "mode:strict": "copy .flightdeckrc.strict.json .flightdeckrc.json && copy .flightdeckrc.strict.json .\\examples\\sample-app\\.flightdeckrc.json && echo Strict mode ON", "mode:demo": "copy .flightdeckrc.demo.json .flightdeckrc.json && copy .flightdeckrc.demo.json .\\examples\\sample-app\\.flightdeckrc.json && echo Demo mode ON",
     "build": "turbo build",
     "dev": "turbo dev",
     "test": "turbo test",
     "lint": "turbo lint",
-    "scan:example": "pnpm -C packages/cli start scan --src ./examples/sample-app --report ./examples/sample-app/.baseline --analytics ./examples/sample-app/traffic.csv",
+    "scan:example": "pnpm -C packages/cli start scan --src ../../examples/sample-app --report ../../examples/sample-app/.baseline --analytics ../../examples/sample-app/traffic.csv",
     "web:dev": "pnpm -C packages/web-report dev",
     "web:export": "pnpm -C packages/web-report export",
     "fetch:features": "node ./scripts/fetch-web-features.mjs",
@@ -16,6 +16,7 @@
     "docker:up": "docker compose -f docker/docker-compose.yml up --build"
   },
   "devDependencies": {
+    "@types/node": "^24.7.0",
     "turbo": "^2.1.1",
     "typescript": "^5.6.3"
   }

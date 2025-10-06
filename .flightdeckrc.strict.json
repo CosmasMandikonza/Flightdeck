@@ -3,11 +3,8 @@
   "baselineYear": 2024,
   "browserslist": ">0.5%, not dead",
   "analyticsCsv": "./examples/sample-app/traffic.csv",
-  "coverageBudget": 20,
+  "coverageBudget": 95,
   "treatNewlyAsViolation": false,
-  "ignore": ["selector-has"],
-  "overrides": {
-    "popover-attribute": { "severity": "info" },
-    "view-transitions": { "severity": "info" }
-  }
+  "ignore": [],
+  "overrides": {}
 }

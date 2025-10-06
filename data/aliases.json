@@ -1,0 +1,11 @@
+{
+  "navigator.clipboard": "clipboard-api",
+  "document.startViewTransition": "view-transitions",
+  "HTMLDialogElement": "dialog-element",
+  "Element.prototype.togglePopover": "popover-attribute",
+  ":has": "selector-has",
+  "popover": "popover-attribute",
+  "dialog": "dialog-element",
+  "popovertarget": "popover-attribute",
+  "fetchpriority": "fetch-priority-attribute"
+}

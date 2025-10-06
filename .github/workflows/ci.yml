@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9.7.0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: 'pnpm' }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm fetch:features
+      - run: pnpm -C packages/core build
+      - run: pnpm -C packages/cli build
+      - name: Scan examples
+        run: pnpm -C packages/cli start scan --src ./examples/sample-app --report ./.baseline --analytics ./examples/sample-app/traffic.csv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: baseline-report
+          path: ./.baseline
